@@ -1,1 +1,1 @@
-# Validar-c-digo-de-barras-PHP
+# Validar código de barras
