@@ -1,0 +1,21 @@
+{
+    "name": "tagliatti/boleto",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Filipe Tagliatti",
+            "email": "filipetagliatti@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.8.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tagliatti\\BoletoValidator\\": ["src", "test"]
+        }
+    }
+}
