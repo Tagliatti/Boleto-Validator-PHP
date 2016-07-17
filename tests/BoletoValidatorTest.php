@@ -17,6 +17,13 @@ class BoletoValidatorTest extends \PHPUnit_Framework_TestCase {
         $this->assertTrue(BoletoValidator::convenio('85890000460-9 52460179160-5 60759305086-5 83148300001-0'));
     }
     
+    /**
+     * Teste para cobrir 100% de coverage.
+     */
+    public function testConvenioValidModule11ifRestoDivisao10() {
+        $this->assertTrue(BoletoValidator::convenio('85890000464-1 52460179160-5 60759305086-5 83148300001-0'));
+    }
+    
     public function testConvenioInalidModule10() {
         $this->assertFalse(BoletoValidator::convenio('83640000001-2 33120138000-2 81288462711-6 08013618155-1'));
     }
