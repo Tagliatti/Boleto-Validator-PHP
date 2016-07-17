@@ -1,5 +1,5 @@
 {
-    "name": "tagliatti/boleto",
+    "name": "tagliatti/boleto-validator",
     "description": "Classe para validação de código de barras e linha digitalizável presente em boletos bancários.",
     "type": "library",
     "license": "MIT",
