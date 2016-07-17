@@ -1,8 +1,9 @@
 # Boleto Validator
 
 [![Build Status](https://travis-ci.org/Tagliatti/Boleto-Validator-PHP.svg?branch=master)](https://travis-ci.org/Tagliatti/Boleto-Validator-PHP)
+[![Coverage Status](https://img.shields.io/codecov/c/github/Tagliatti/Boleto-Validator-PHP.svg)](https://codecov.io/github/Tagliatti/Boleto-Validator-PHP)
 [![Total Downloads](https://poser.pugx.org/Tagliatti/Boleto-Validator/downloads.png)](https://packagist.org/packages/Tagliatti/Boleto-Validator)
-[![Latest Stable Version](https://poser.pugx.org/Tagliatti/Boleto-Validator/v/stable.png)](https://packagist.org/packages/Tagliatti/Boleto-Validator)
+[![Latest Stable Version](https://img.shields.io/github/release/Tagliatti/Boleto-Validator-PHP.svg)](https://packagist.org/packages/Tagliatti/Boleto-Validator)
 
 Classe para validação de código de barras e linha digitalizável presente em boletos bancários. Compatível com PHP 5.5+ e deve ser utilizado um Autoloader compatível com a PSR-4.
 
