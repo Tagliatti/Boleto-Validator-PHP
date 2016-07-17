@@ -7,7 +7,7 @@
 
 Classe para validação de código de barras e linha digitalizável presente em boletos bancários. Compatível com PHP 5.5+ e deve ser utilizado um Autoloader compatível com a PSR-4.
 
-Ela valida boletos do tipo convênio (conta de luz, agua, IPTU...), que são compostos por 4 blocos de números:
+Ela valida boletos do tipo convênio (conta de luz, água, IPTU...), que são compostos por 4 blocos de números:
 
 ![convénio](http://i.imgur.com/CJApi3T.jpg)
 
