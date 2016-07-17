@@ -1,6 +1,8 @@
 {
     "name": "tagliatti/boleto",
+    "description": "Classe para validação de código de barras e linha digitalizável presente em boletos bancários.",
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "Filipe Tagliatti",
@@ -8,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5",
+        "php": ">=5.5"
     },
     "require-dev": {
         "phpunit/phpunit": "4.8.*"
