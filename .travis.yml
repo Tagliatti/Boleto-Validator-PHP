@@ -13,3 +13,6 @@ matrix:
 before_script:
   - composer selfupdate
   - composer install --dev --prefer-dist
+  
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
