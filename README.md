@@ -36,29 +36,29 @@ A instalação desta biblioteca pode ser feita utilizando o Composer.
 <?php
 require_once('./vendor/autoload.php');
 
-namespace Tagliatti\BoletoValidator\BoletoValidator;
+use Tagliatti\BoletoValidator\BoletoValidator;
 
 // Com mascara
-BoletoValidator.convenio("83640000001-1 33120138000-2 81288462711-6 08013618155-1");
+BoletoValidator::convenio("83640000001-1 33120138000-2 81288462711-6 08013618155-1");
 
 // Com outro tipo de mascara
-BoletoValidator.convenio("83640000001 1 33120138000 2 81288462711 6 08013618155 1");
+BoletoValidator::convenio("83640000001 1 33120138000 2 81288462711 6 08013618155 1");
 
 // Sem mascara
-BoletoValidator.convenio("836400000011331201380002812884627116080136181551");
+BoletoValidator::convenio("836400000011331201380002812884627116080136181551");
 ```
 ### Validando fatura ou carnê
 ```php
 <?php
 require_once('./vendor/autoload.php');
     
-namespace Tagliatti\BoletoValidator\BoletoValidator;
+use Tagliatti\BoletoValidator\BoletoValidator;
     
 // Com mascara
-BoletoValidator.boleto("42297.11504 00001.954411 60020.034520 2 68610000054659");
+BoletoValidator::boleto("42297.11504 00001.954411 60020.034520 2 68610000054659");
     
 // Sem mascara
-BoletoValidator.boleto("42297115040000195441160020034520268610000054659");
+BoletoValidator::boleto("42297115040000195441160020034520268610000054659");
 ```
 # Licença de uso
 Esta biblioteca segue os termos de uso da [The MIT License (MIT)](https://opensource.org/licenses/mit-license.php)
