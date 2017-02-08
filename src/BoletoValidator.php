@@ -9,7 +9,8 @@ namespace Tagliatti\BoletoValidator;
  * @author Filipe Tagliatti <filipetagliatti@gmail.com>
  * @version 1.0.0 
  */
-class BoletoValidator {
+class BoletoValidator
+{
     
     /**
      * Valida boletos do tipo convênio.
@@ -21,7 +22,8 @@ class BoletoValidator {
      * @throws Exception Caso o formato do boleto não atender as especificações.
      * @return boolean Retorna se é válido ou não.
      */
-    public static function convenio($codigoBarras) {
+    public static function convenio($codigoBarras)
+    {
         $codigoBarras = str_replace([' ', '-'], '', $codigoBarras);
         
         if (!preg_match("/^[0-9]{48}$/", $codigoBarras)) {
@@ -61,7 +63,8 @@ class BoletoValidator {
      * @throws Exception Caso o formato do boleto não atender as especificações.
      * @return boolean Retorna se é válido ou não.
      */
-    public static function boleto($linhaDigitavel) {
+    public static function boleto($linhaDigitavel)
+    {
         $linhaDigitavel = str_replace([' ', '.'], '', $linhaDigitavel);
         
         if (!preg_match("/^[0-9]{47}$/", $linhaDigitavel)) {
@@ -89,7 +92,8 @@ class BoletoValidator {
      * @param string $bloco
      * @return boolean Retorna se é válido ou não.
      */
-    protected static function modulo10($bloco) {
+    protected static function modulo10($bloco)
+    {
         $tamanhoBloco = strlen($bloco) - 1;
         $digitoVerificador = $bloco[$tamanhoBloco];
         
@@ -128,7 +132,8 @@ class BoletoValidator {
      * @param string $bloco
      * @return boolean Retorna se é válido ou não.
      */
-    protected static function modulo11($bloco) {
+    protected static function modulo11($bloco)
+    {
         $tamanhoBloco = strlen($bloco) - 1;
         $digitoVerificador = $bloco[$tamanhoBloco];
         
