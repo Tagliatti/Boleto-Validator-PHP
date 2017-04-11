@@ -3,21 +3,20 @@
 namespace Tagliatti\BoletoValidator;
 
 /**
- * Classe para validação de código de barras e 
+ * Classe para validação de código de barras e
  * linha digitalizável presente em boletos bancários.
- * 
+ *
  * @author Filipe Tagliatti <filipetagliatti@gmail.com>
- * @version 1.0.0 
  */
 class BoletoValidator
 {
     
     /**
      * Valida boletos do tipo convênio.
-     * 
+     *
      * @example Exemplo modulo 10: 83640000001-1 33120138000-2 81288462711-6 08013618155-1
      * @example Exemplo modulo 11: 85890000460-9 52460179160-5 60759305086-5 83148300001-0
-     * 
+     *
      * @param string $codigoBarras Código de barras com ou sem mascara.
      * @throws Exception Caso o formato do boleto não atender as especificações.
      * @return boolean Retorna se é válido ou não.
@@ -46,7 +45,7 @@ class BoletoValidator
         foreach ($blocos as $bloco) {
             if ($isModulo10 && static::modulo10($bloco)) {
                 $valido++;
-            } else if (static::modulo11($bloco)) {
+            } elseif (static::modulo11($bloco)) {
                 $valido++;
             }
         }
@@ -56,9 +55,9 @@ class BoletoValidator
     
     /**
      * Valida boletos do tipo fatura ou carnê.
-     * 
+     *
      * @example Exemplo: 42297.11504 00001.954411 60020.034520 2 68610000054659
-     * 
+     *
      * @param string $linhaDigitavel Linha digitalizável com ou sem mascara.
      * @throws Exception Caso o formato do boleto não atender as especificações.
      * @return boolean Retorna se é válido ou não.
@@ -88,7 +87,7 @@ class BoletoValidator
     
     /**
      * Cacula o módulo 10 do bloco.
-     * 
+     *
      * @param string $bloco
      * @return boolean Retorna se é válido ou não.
      */
@@ -107,7 +106,7 @@ class BoletoValidator
             $soma = $value * ($index % 2 == 0 ? 2 : 1);
             
             /**
-             * Quando a $soma tiver mais de 1 algarismo(ou seja, maior que 9), 
+             * Quando a $soma tiver mais de 1 algarismo(ou seja, maior que 9),
              * soma-se os algarismos antes de somar com $somatorio
              */
             if ($soma > 9) {
@@ -118,7 +117,7 @@ class BoletoValidator
         }
         
         /**
-         * (ceil($somatorio / 10) * 10) pega a dezena imediatamente superior ao $somatorio 
+         * (ceil($somatorio / 10) * 10) pega a dezena imediatamente superior ao $somatorio
          * (dezena superior de 25 é 30, a de 43 é 50...).
          */
         $dezenaSuperiorSomatorioMenosSomatorio = (ceil($somatorio / 10) * 10) - $somatorio;
@@ -128,7 +127,7 @@ class BoletoValidator
     
     /**
      * Cacula o módulo 11 do bloco.
-     * 
+     *
      * @param string $bloco
      * @return boolean Retorna se é válido ou não.
      */
@@ -151,7 +150,7 @@ class BoletoValidator
         
         if ($restoDivisao == 0 || $restoDivisao == 1) {
             $dezenaSuperiorSomatorioMenosSomatorio = 0;
-        } else if ($restoDivisao == 10) {
+        } elseif ($restoDivisao == 10) {
             $dezenaSuperiorSomatorioMenosSomatorio = 1;
         } else {
             $dezenaSuperiorSomatorioMenosSomatorio = (ceil($somatorio / 11) * 11) - $somatorio;
@@ -159,5 +158,4 @@ class BoletoValidator
         
         return $dezenaSuperiorSomatorioMenosSomatorio == $digitoVerificador;
     }
-    
 }
