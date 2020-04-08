@@ -2,6 +2,8 @@
 
 namespace Tagliatti\BoletoValidator;
 
+use Exception;
+
 /**
  * Classe para validação de código de barras e
  * linha digitalizável presente em boletos bancários.
@@ -26,7 +28,7 @@ class BoletoValidator
         $codigoBarras = str_replace([' ', '-'], '', $codigoBarras);
 
         if (!preg_match("/^[0-9]{48}$/", $codigoBarras)) {
-            throw new \Exception("Envalid format.");
+            throw new Exception("Envalid format.");
         }
 
         $blocos[0] = substr($codigoBarras, 0, 12);
@@ -70,8 +72,12 @@ class BoletoValidator
     {
         $linhaDigitavel = str_replace([' ', '.'], '', $linhaDigitavel);
 
-        if ( ! preg_match("/^(?=[0-9]*$)((?:.{36}|.{47})|(?:.{36}.000$))$/", $linhaDigitavel) ) {
-            throw new \Exception("Envalid format.");
+        if ( ! preg_match("/^(?=[0-9]*$)(?:.{36}|.{47})$/", $linhaDigitavel) ) {
+            throw new Exception("Invalid format");
+        }
+
+        if ( strlen($linhaDigitavel) == 36 && substr($linhaDigitavel, -3) != '000' ) {
+            throw new Exception('Invalid format');
         }
 
         $blocos[0] = substr($linhaDigitavel, 0, 10);
