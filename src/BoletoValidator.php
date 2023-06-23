@@ -3,8 +3,7 @@
 namespace Tagliatti\BoletoValidator;
 
 /**
- * Classe para validação de código de barras e
- * linha digitalizável presente em boletos bancários.
+ * Classe para validação de linha digitalizável presente em boletos bancários e em boletos de convênio.
  *
  * @author Filipe Tagliatti <filipetagliatti@gmail.com>
  */
@@ -17,28 +16,27 @@ class BoletoValidator
      * @example Exemplo modulo 10: 83640000001-1 33120138000-2 81288462711-6 08013618155-1
      * @example Exemplo modulo 11: 85890000460-9 52460179160-5 60759305086-5 83148300001-0
      *
-     * @param string $codigoBarras Código de barras com ou sem mascara.
-     * @throws Exception Caso o formato do boleto não atender as especificações.
+     * @param string $linhaDigitavel linha digitável com ou sem máscara de boleto de convênio.
      * @return boolean Retorna se é válido ou não.
      */
-    public static function convenio($codigoBarras)
+    public static function convenio(string $linhaDigitavel): bool
     {
-        $codigoBarras = str_replace([' ', '-'], '', $codigoBarras);
+        $linhaDigitavel = str_replace([' ', '-'], '', $linhaDigitavel);
         
-        if (!preg_match("/^[0-9]{48}$/", $codigoBarras)) {
-            throw new \Exception("Envalid format.");
+        if (!preg_match("/^[0-9]{48}$/", $linhaDigitavel)) {
+            return false;
         }
         
-        $blocos[0] = substr($codigoBarras, 0, 12);
-        $blocos[1] = substr($codigoBarras, 12, 12);
-        $blocos[2] = substr($codigoBarras, 24, 12);
-        $blocos[3] = substr($codigoBarras, 36, 12);
+        $blocos[0] = substr($linhaDigitavel, 0, 12);
+        $blocos[1] = substr($linhaDigitavel, 12, 12);
+        $blocos[2] = substr($linhaDigitavel, 24, 12);
+        $blocos[3] = substr($linhaDigitavel, 36, 12);
         
         /**
          * Verifica se é o modulo 10 ou modulo 11.
          * Se o 3º digito for 6 ou 7 é modulo 10, se for 8 ou 9, então modulo 11.
          */
-        $isModulo10 = in_array($codigoBarras[2], [6, 7]);
+        $isModulo10 = in_array($linhaDigitavel[2], [6, 7]);
 
         $valido = 0;
 
@@ -58,16 +56,15 @@ class BoletoValidator
      *
      * @example Exemplo: 42297.11504 00001.954411 60020.034520 2 68610000054659
      *
-     * @param string $linhaDigitavel Linha digitalizável com ou sem mascara.
-     * @throws Exception Caso o formato do boleto não atender as especificações.
+     * @param string $linhaDigitavel Linha digitalizável com ou sem máscara de boleto bancário.
      * @return boolean Retorna se é válido ou não.
      */
-    public static function boleto($linhaDigitavel)
+    public static function boleto(string $linhaDigitavel): bool
     {
         $linhaDigitavel = str_replace([' ', '.'], '', $linhaDigitavel);
         
         if (!preg_match("/^[0-9]{47}$/", $linhaDigitavel)) {
-            throw new \Exception("Envalid format.");
+            return false;
         }
         
         $blocos[0] = substr($linhaDigitavel, 0, 10);
